@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./style/style.css" />
+    <link rel="stylesheet" href="../style/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -15,7 +15,7 @@
   <body>
     <div class="header">
       <div id="menu-icon">
-        <img id="icon-menu" src="./images/barra-de-menu.png" alt="" />
+        <img id="icon-menu" src="../images/barra-de-menu.png" alt="" />
       </div>
       <div id="titulo">
         <h1>Controle De Datas</h1>
@@ -23,8 +23,8 @@
       <div id="menu-options">
         <ul>
           <!-- <img id="usuario" src="./images/usuario-exemplo.jpg" alt="" /> -->
-          <a href="./index.html"><li>Pagina Inicial</li></a>
-          <a href="./pages/listagem.html"><li>Listar Datas</li></a>
+          <a href="/index.html"><li>Pagina Inicial</li></a>
+          <a href="/listagem.html"><li>Listar Datas</li></a>
         </ul>
       </div>
     </div>
@@ -72,7 +72,7 @@
     </div>
     <div class="footer"></div>
   </body>
-  <script src="js/script.js"></script>
+  <!-- <script src="../js/script.js"></script> -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       carregarDados();
@@ -99,7 +99,7 @@
     }
 
     function preencherDescricaoPorEAN(ean) {
-      fetch("../cadastro.json")
+      fetch("../frutap.json")
         .then((response) => response.json())
         .then((data) => {
           const mercados = data.mercados;
@@ -125,7 +125,7 @@
     }
 
     function carregarDados() {
-      fetch("/cadastro.json")
+      fetch("../frutap.json")
         .then((response) => {
           if (response.ok) {
             return response.json();

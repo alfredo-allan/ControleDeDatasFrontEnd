@@ -20,7 +20,7 @@ function formatarData() {
 }
 
 function preencherDescricaoPorEAN(ean) {
-  fetch("../frutap.json")
+  fetch("../f")
     .then((response) => response.json())
     .then((data) => {
       const mercados = data.mercados;
@@ -46,7 +46,7 @@ function preencherDescricaoPorEAN(ean) {
 }
 
 function carregarDados() {
-  fetch("../frutap.json")
+  fetch("../cadastro.json")
     .then((response) => {
       if (response.ok) {
         return response.json();

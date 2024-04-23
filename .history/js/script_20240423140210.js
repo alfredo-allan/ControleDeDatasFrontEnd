@@ -46,7 +46,7 @@ function preencherDescricaoPorEAN(ean) {
 }
 
 function carregarDados() {
-  fetch("../frutap.json")
+  fetch("../cadastro.json")
     .then((response) => {
       if (response.ok) {
         return response.json();
