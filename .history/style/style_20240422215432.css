@@ -10,7 +10,7 @@ body {
 
 @font-face {
   font-family: "Luthier";
-  src: url("../fonts/LuthierFF/Luthier-Regular.ttf") format("truetype");
+  src: url("../fonts/LuthierFF/") format("truetype");
   /* Adicione mais formatos (e.g. woff, woff2) conforme necessário */
 }
 
