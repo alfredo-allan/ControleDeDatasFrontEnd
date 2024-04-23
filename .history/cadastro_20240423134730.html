@@ -125,7 +125,7 @@
     }
 
     function carregarDados() {
-      fetch("/cadastro.json")
+      fetch("/")
         .then((response) => {
           if (response.ok) {
             return response.json();
