@@ -20,7 +20,7 @@ function formatarData() {
 }
 
 function preencherDescricaoPorEAN(ean) {
-  fetch("../cadastro.json")
+  fetch("../")
     .then((response) => response.json())
     .then((data) => {
       const mercados = data.mercados;
@@ -189,3 +189,4 @@ document.getElementById("btn-salvar").addEventListener("click", function () {
       console.error("Erro ao salvar os dados:", error);
     });
 });
+
