@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Controle de Datas</title>
+  </head>
+  <body>
+    <div class="header">
+      <div id="menu-icon">
+        <img id="icon-menu" src="./images/barra-de-menu.png" alt="" />
+      </div>
+      <div id="titulo">
+        <h1>Controle De Datas</h1>
+      </div>
+      <div id="menu-options">
+        <ul>
+          <!-- <img id="usuario" src="./images/usuario-exemplo.jpg" alt="" /> -->
+          <a href="../index.html"><li>Pagina Inicial</li></a>
+          <a href="../pages/listagem.html"><li>Listar Datas</li></a>
+        </ul>
+      </div>
+    </div>
+    <div id="form">
+      <div class="column">
+        <span>Nome Do Promotor:</span>
+        <input type="text" id="nome-promotor" placeholder="Digite Seu Nome" />
+
+        <span>Nome Do Cliente</span>
+        <input
+          type="text"
+          id="nome-cliente"
+          placeholder="Nome Do Supermercado"
+        />
+
+        <span>Endereço</span>
+        <input type="text" id="endereco-cliente" placeholder="Endereço Do Mercado" />
+
+        <span>EAN</span>
+        <input type="text" id="ean" placeholder="Código De Barras" />
+
+        <span>Descrição</span>
+        <input
+          type="text"
+          id="descricao-produto"
+          placeholder="Descrição Do Produto"
+        />
+
+        <span>Data De Vencimento</span>
+        <input
+          type="text"
+          id="data-vencimento"
+          placeholder="Data De Vencimento"
+        />
+
+        <span>Quantidade De Produtos</span>
+        <input type="text" id="quantidade-produtos" placeholder="Quantidade" />
+
+        <button id="btn-salvar" >Salvar</button>
+      </div>
+    </div>
+    <div class="footer"></div>
+  </body>
+  <script src=".././.js/script.js"></script>
+</html>
