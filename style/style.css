@@ -207,7 +207,7 @@ button:focus {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  border: 1px solid var(--cor-azul);
+  /* border: 1px solid var(--cor-azul); */
   color: var(--cor-azul);
   border-radius: 5px;
   max-height: 330px;
@@ -249,4 +249,17 @@ button:focus {
 #data-list::-webkit-scrollbar-thumb {
   background-color: white; /* Cor da barra de rolagem */
   border-radius: 5px; /* Raio de borda da barra de rolagem */
+}
+
+#texto-descritivo {
+  text-align: justify;
+  margin-top: 200px;
+  position: fixed;
+  font-family: var(--luthier-font);
+  letter-spacing: 3px;
+  line-height: 2;
+  margin-right: 8px;
+  font-weight: 900;
+  color: var(--cor-azul);
+
 }
