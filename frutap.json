@@ -46,7 +46,7 @@
         },
         {
           "codigoEAN": "7896862002176",
-          "descricao": "LTE FERM FRUTAP 900g UVA"
+          "descricao": "LTE FERM FRUTAP 900G UVA"
         },
         {
           "codigoEAN": "7896862002190",
@@ -312,8 +312,135 @@
         {
           "codigoEAN": "7896862002787",
           "descricao": "IOG NATURAL FRUTAP 150G MEL"
+        },
+        {
+          "codigoEAN": "789682000806",
+          "descricao": "IORGUTE LIQ FRUTAP 160G MORANGO"
+        },
+        {
+          "codigoEAN": "7896862002572",
+          "descricao": "IORGUTE FRUTAP GF 1,25KG MORANGO"
+        },
+        {
+          "codigoEAN": "7896862002343",
+          "descricao": "IOG LIQ  FRUTAP 850G AÇAÍ C/ BANANA"
+        },
+        {
+          "codigoEAN": "7896862001353",
+          "descricao": "BEB LACTEA FRULILAC 480G MORANGO"
+        },
+        {
+          "codigoEAN": "7896862001841",
+          "descricao": "BEB LACTEA FRUTILAC 480G FTAS/TROP"
+        },
+        {
+          "codigoEAN": "7896862002794",
+          "descricao": "IOG FRUTAP MORANGO C/ CEREAIS COLORIDOS 115G"
+        },
+        {
+          "codigoEAN": "7896862002657",
+          "descricao": "IOG FRUTAP MORANGO C/ CONFEITO DE CHOCOLATE 115G"
+        },
+        {
+          "codigoEAN": "7896862000752",
+          "descricao": "PETIT FRUTAPINHO 320G MORANGO"
+        },
+        {
+          "codigoEAN": "7896862002770",
+          "descricao": "IOG FRUTAP NATURAL 150G LAR/CEN/MEL"
+        },
+        {
+          "codigoEAN": "7896862002664",
+          "descricao": "IOG FRUTAP MORANGO COM CEREAIS COLORIDOS 115G"
+        },
+        {
+          "codigoEAN": "7896862000776",
+          "descricao": "PETIT FRUTAPINHO 320G MOR/MAC/BAN"
+        },
+        {
+          "codigoEAN": "7896862002947",
+          "descricao": "LEITE FERMENTADO FRUTAP MORANGO 170G"
+        },
+        {
+          "codigoEAN": "7896862001780",
+          "descricao": "BEBIDA LÁCTEA FERMENTADA MORANGO FRUTILAC 170G"
+        },
+        {
+          "codigoEAN": "7896862001797",
+          "descricao": "BEB LÁCEA FERM FRUTILAC SALADA DE FRUTAS 130G"
+        },
+        {
+          "codigoEAN": "7896862002398",
+          "descricao": "IOG FRUTAP 850G ZERO MORANGO"
+        },
+        {
+          "codigoEAN": "7896862002534",
+          "descricao": "IORG LIQ FRUTAP ZERO AMEIXA 5 GRÃOS 850G"
+        },
+        {
+          "codigoEAN": "7896862000868",
+          "descricao": "IOGURTE FRUTAP FRUTAS VERMELHA 850G"
+        },
+        {
+          "codigoEAN": "7896862000424",
+          "descricao": "IORG LÍQ FRUTAP SABOR COCO 850G"
+        },
+        {
+          "codigoEAN": "7896862000684",
+          "descricao": "IORG LÍQ FRUTAP SABOR SALADA DE FRUTAS 850G"
+        },
+        {
+          "codigoEAN": "7896862002527",
+          "descricao": "IORG LÍQ FRUTAP ZERO AMEIXA+5 GRÃOS 160G"
+        },
+        {
+          "codigoEAN": "7896862001216",
+          "descricao": "BEBIDA LACTEA SABOR COCO 850G FRUTILAC"
+        },
+        {
+          "codigoEAN": "7896862001230",
+          "descricao": "BEBIDA LÁCTEA FERMENTADA MORANGO FRUTILAC PACOTE 850G"
+        },
+        {
+          "codigoEAN": "7896862000066",
+          "descricao": "BEBIDA LÁCTEA FERMENTADA COCO FRUTILAC PACOTE 850G"
+        },
+        {
+          "codigoEAN": "7896862001223",
+          "descricao": "BEBIDA LÁCTEA FERMENTADA FRUTAS VERMELHAS FRUTILAC PACOTE 850G"
+        },
+        {
+          "codigoEAN": "7896862002060",
+          "descricao": "LEITE FERMENTADO FRUTAP TRADICIONAL 850G"
+        },
+        {
+          "codigoEAN": "7896862002862",
+          "descricao": "LEITE FERM FRUTAP ZERO LACTOSE BAUNILHA 850G"
+        },
+        {
+          "codigoEAN": "7896862002862",
+          "descricao": "LEITE FERM FRUTAP ZERO LACTOSE BAUNILHA 850G"
+        },
+        {
+          "codigoEAN": "7896862002954",
+          "descricao": "LEITE FERMENTADO FRUTAP 850G MORANGO"
+        },
+        {
+          "codigoEAN": "7896862002954",
+          "descricao": "LEITE FERMENTADO FRUTAP 850G MORANGO"
+        },
+        {
+          "codigoEAN": "7896862002701",
+          "descricao": "LEITE FERM FRUTAP BONATE 130G"
+        },
+        {
+          "codigoEAN": "7896862002855",
+          "descricao": "LEITE FERM FRUTAP ZERO LACTOSE 170G"
+        },
+        {
+          "codigoEAN": "7896862002138",
+          "descricao": "LEITE FERMENTADO FRUTAP 480G"
         }
-       
       ]
     }
   ]
