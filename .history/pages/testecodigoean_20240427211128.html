@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../style/style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="modal-ean" class="modal">
+      <div class="modal-content">
+        <p>Deseja abrir sua câmera e scanear o código?</p>
+        <div id="modalbtn">
+          <button id="confirmButton">Sim</button>
+          <button id="cancelButton">Digitar</button>
+        </div>
+      </div>
+    </div>
+    <span>EAN</span>
+    <input type="text" id="ean" placeholder="Código De Barras" />
+
+    <video id="barcode-scanner" playsinline></video>
+
+    <script src="https://cdn.jsdelivr.net/npm/quagga"></script>
+    <script>
+      // Selecionando o input e o modal
+      var eanInput = document.getElementById("ean");
+      var modal = document.getElementById("modal-ean");
+
+      // Adicionando evento de clique no input
+      eanInput.addEventListener("click", function () {
+        modal.style.display = "block";
+      });
+
+      // Adicionando evento de clique no botão "Sim"
+      document
+        .getElementById("confirmButton")
+        .addEventListener("click", function () {
+          Quagga.init(
+            {
+              inputStream: {
+                name: "Live",
+                type: "LiveStream",
+                target: document.querySelector("#barcode-scanner"),
+                constraints: {
+                  width: 640,
+                  height: 480,
+                  facingMode: "environment",
+                },
+              },
+              decoder: {
+                readers: ["ean_reader"],
+              },
+            },
+            function (err) {
+              if (err) {
+                console.log(err);
+                return;
+              }
+              Quagga.start();
+              Quagga.onDetected(function (data) {
+                eanInput.value = data.codeResult.code;
+                modal.style.display = "none";
+                Quagga.stop();
+              });
+            }
+          );
+        });
+    </script>
+  </body>
+</html>
+// Adicionar verificação do suporte do navegador ao getUserMedia
+if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+    // Código para iniciar Quagga aqui
+} else {
+    alert('Seu navegador não suporta a funcionalidade de captura de vídeo.');
+}

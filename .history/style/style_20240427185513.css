@@ -1,0 +1,299 @@
+:root {
+  --cor-azul: rgb(44, 65, 129);
+  --oswald-font: "Oswald", sans-serif;
+  --luthier-font: "Luthier";
+}
+
+body {
+  font-family: var(--oswald-font);
+}
+
+@font-face {
+  font-family: "Luthier";
+  src: url("../fonts/LuthierFF/Luthier-Regular.ttf") format("truetype");
+  /* Adicione mais formatos (e.g. woff, woff2) conforme necessário */
+}
+
+#titulo h1 {
+  font-family: var(--luthier-font);
+  letter-spacing: 3px;
+  font-weight: 900;
+  color: white;
+  margin-top: -30px;
+  margin-left: 55px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 20px 15px 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 300px;
+  margin: 0 auto;
+  span {
+    font-weight: 900;
+    font-family: var(--luthier-font);
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+    color: var(--cor-azul);
+  }
+}
+
+#logo img {
+  margin-top: 200px;
+  width: 250px;
+  margin-left: 50px;
+}
+
+#logo {
+  h1 {
+    text-align: center;
+    text-wrap: nowrap;
+    font-size: 25px;
+    font-family: var(--oswald-font);
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: var(--cor-azul);
+  }
+}
+
+#form {
+  margin-top: 80px;
+}
+
+input {
+  margin-bottom: 5px;
+  padding: 5px;
+  width: 100%;
+  box-sizing: border-box;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+input::placeholder {
+  text-align: center;
+  color: gray;
+  font-family: var(--oswald-font);
+  font-weight: 400;
+}
+
+input:focus {
+  outline-color: var(--cor-azul); /* Altere a cor aqui */
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background-color: var(--cor-azul);
+}
+
+#icon-menu {
+  width: 35px;
+  margin-top: 10px;
+  z-index: 1;
+  margin-left: 8px;
+  cursor: pointer;
+}
+
+#menu-options ul {
+  list-style: none;
+  padding: 0;
+  margin-left: 5px;
+  font-size: 20px;
+  font-weight: 500;
+  text-wrap: nowrap;
+  font-family: var(--oswald-font);
+  z-index: 999;
+}
+
+#menu-options ul li {
+  padding: 10px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  z-index: 999;
+}
+
+a {
+  text-decoration: none; /* Remove sublinhado */
+  color: inherit; /* Mantém a cor padrão do texto */
+  /* Adicione quaisquer outros estilos desejados para o link */
+}
+
+#menu-options {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-top: 60px;
+  width: 60%;
+  height: 41vh;
+  border-bottom-right-radius: 15px;
+  background-color: var(--cor-azul);
+  color: white;
+  font-family: var(--oswald-font);
+  font-weight: 900;
+  z-index: 999;
+}
+
+button {
+  text-align: center;
+  width: 110px;
+  height: 30px;
+  padding: 6px 30px;
+  background-color: rgba(44, 65, 129, 0.897);
+  border-radius: 5px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: var(--oswald-font);
+}
+
+button:focus {
+  outline: 2px solid var(--cor-azul);
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  background-color: var(--cor-azul);
+}
+
+.footer img {
+  width: 45px;
+  margin-top: 2px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+#autocomplete-list-id {
+  background-color: #f1f1f1;
+  border: 1px solid #d4d4d4;
+  color: var(--cor-azul);
+  border-top: none;
+  max-height: 200px;
+  overflow-y: auto;
+  position: absolute;
+  /* z-index: 999; */
+  margin-top: -10px;
+  margin-left: 60px;
+}
+
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff;
+  border-bottom: 1px solid #d4d4d4;
+}
+
+.autocomplete-items div:hover {
+  background-color: #e9e9e9;
+}
+
+.autocomplete-items div strong {
+  font-weight: bold;
+}
+
+#data-list {
+  margin: 0 auto;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0 auto;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  /* border: 1px solid var(--cor-azul); */
+  color: var(--cor-azul);
+  border-radius: 5px;
+  max-height: 330px;
+  overflow-y: auto;
+  position: absolute;
+  z-index: -1;
+  margin-top: 110px;
+  margin-left: 0px;
+  width: 336px;
+  list-style: none;
+  .name {
+    font-family: var(--oswald-font);
+    font-weight: 900;
+    font-size: 17px;
+  }
+  .item {
+    font-family: var(--oswald-font);
+    font-weight: 500;
+    font-size: 15;
+    color: rgb(0, 0, 0);
+  }
+}
+
+/* #promotor {
+  line-height: 60px;
+} */
+
+#data-list {
+  /* Estilos do elemento #data-list */
+  /* Defina outras propriedades conforme necessário */
+
+  scrollbar-color: var(--cor-azul) var(--cor-azul); /* Cor da barra de rolagem e do fundo da barra */
+}
+
+#data-list::-webkit-scrollbar {
+  width: 10px; /* Largura da barra de rolagem */
+}
+
+#data-list::-webkit-scrollbar-thumb {
+  background-color: white; /* Cor da barra de rolagem */
+  border-radius: 5px; /* Raio de borda da barra de rolagem */
+}
+
+#texto-descritivo {
+  text-align: justify;
+  margin-top: 200px;
+  position: fixed;
+  font-family: var(--luthier-font);
+  letter-spacing: 3px;
+  line-height: 2;
+  margin-right: 8px;
+  font-weight: 900;
+  color: var(--cor-azul);
+}
+
+#del {
+  width: 25px;
+  margin: -4px;
+  margin-left: 20px;
+}
+
+#atualizar {
+  width: 25px;
+  margin: -5px;
+  margin-left: 20px;
+}
+
+#estoque {
+  width: 4px;
+  height: 50px;
+}
+
+.imagem {
+  background-image: url("");
+  background-size: cover;
+  width: 100%;
+  height: 200px; /* Altura desejada */
+  background-position: center;
+}
+
+#ean {
+  background-image: url("../images/camera-fotografica.png");
+  background-size: 25px; /* ajuste o tamanho da imagem conforme necessário */
+  background-repeat: no-repeat;
+  padding-left: 20px; espaço para a imagem não sobrescrever o texto digitado
+}

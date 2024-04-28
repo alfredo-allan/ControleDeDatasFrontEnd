@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="">
+    <title>Document</title>
+  </head>
+  <body>
+		 <div id="modal-ean" class="modal">
+      <div class="modal-content">
+        <p>Deseja abrir sua camera e scanear o código?</p>
+        <div id="modalbtn">
+          <button id="confirmButton">Sim</button>
+          <button id="cancelButton">Digitar código</button>
+        </div>
+      </div>
+    </div>
+    <span>EAN</span>
+    <input type="text" id="ean" placeholder="Código De Barras" />
+  </body>
+	<script>
+		    // Selecionando o botão de fechar e o modal
+    var closeButton = document.querySelector(".close");
+    var modal = document.getElementById("ean-modal");
+
+    // Adicionando um evento de clique no botão de fechar
+    closeButton.addEventListener("click", function () {
+      modal.style.display = "none";
+    });
+	</script>
+</html>
