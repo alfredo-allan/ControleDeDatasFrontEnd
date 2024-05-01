@@ -245,7 +245,108 @@
         closeAllLists(e.target);
       });
     }
-    
+    function carregarDados() {
+      fetch("")
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error("Erro ao carregar os dados");
+          }
+        })
+        .then((data) => {
+          if (data && data.mercados) {
+            const mercados = data.mercados.map((mercado) => mercado.nome);
+            const codigosEAN = data.mercados.map(
+              (mercado) => mercado.codigoEAN
+            );
+            const enderecos = data.mercados.map((mercado) => mercado.endereco);
+
+            autocomplete(
+              document.getElementById("nome-cliente"),
+              mercados,
+              data
+            );
+            autocomplete(document.getElementById("ean"), codigosEAN);
+            autocomplete(
+              document.getElementById("endereco-cliente"),
+              enderecos,
+              data
+            );
+          } else {
+            console.error("Formato de dados inválido");
+          }
+        })
+        .catch((error) => {
+          console.error("Erro ao carregar os dados do arquivo JSON:", error);
+        });
+    }
+    function autocomplete(inp, arr, data) {
+      var currentFocus;
+
+      inp.addEventListener("input", function (e) {
+        var a,
+          b,
+          i,
+          val = this.value;
+        closeAllLists();
+        if (!val) {
+          return false;
+        }
+        currentFocus = -1;
+        a = document.createElement("DIV");
+        a.setAttribute("id", "autocomplete-list-id");
+        a.setAttribute("class", "autocomplete-items");
+        this.parentNode.appendChild(a);
+        for (i = 0; i < arr.length; i++) {
+          if (
+            arr[i] &&
+            arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()
+          ) {
+            b = document.createElement("DIV");
+            b.innerHTML =
+              "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+            b.innerHTML += arr[i].substr(val.length);
+            b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+            b.addEventListener("click", function (e) {
+              inp.value = this.getElementsByTagName("input")[0].value;
+              closeAllLists();
+              // Preencher o campo de Endereço do mercado ao selecionar o nome do mercado
+              var selectedMarket = this.getElementsByTagName("input")[0].value;
+              var mercadoSelecionado = data.mercados.find(
+                (mercado) => mercado.nome === selectedMarket
+              );
+              if (mercadoSelecionado) {
+                var enderecoCompleto =
+                  mercadoSelecionado.endereco.rua +
+                  ", " +
+                  mercadoSelecionado.endereco.bairro +
+                  ", " +
+                  mercadoSelecionado.endereco.cidade +
+                  ", " +
+                  mercadoSelecionado.endereco.estado;
+                document.getElementById("endereco-cliente").value =
+                  enderecoCompleto;
+              }
+            });
+            a.appendChild(b);
+          }
+        }
+      });
+
+      function closeAllLists(elmnt) {
+        var x = document.getElementsByClassName("autocomplete-items");
+        for (var i = 0; i < x.length; i++) {
+          if (elmnt != x[i] && elmnt != inp) {
+            x[i].parentNode.removeChild(x[i]);
+          }
+        }
+      }
+
+      document.addEventListener("click", function (e) {
+        closeAllLists(e.target);
+      });
+    }
     const menuIcon = document.getElementById("menu-icon");
     const menuOptions = document.getElementById("menu-options");
 

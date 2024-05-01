@@ -77,7 +77,7 @@
               if (
                 item.nomeCliente === nomeCliente &&
                 item.enderecoCliente === enderecoCliente &&
-                item.nomePromotor == nomePromotor
+                item.nomePromotor == nomePromotor 
               ) {
                 const listItem = document.createElement("li");
                 listItem.innerHTML = `
@@ -108,7 +108,7 @@
         const nomeCliente = document.getElementById("nome-cliente").value;
         const enderecoCliente =
           document.getElementById("endereco-cliente").value;
-        document.getElementById("nome-promotor").value;
+          document.getElementById("nome-promotor").value;
 
         fetch("https://v1controledatas.pythonanywhere.com/dados")
           .then((response) => response.json())
