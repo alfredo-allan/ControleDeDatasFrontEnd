@@ -61,6 +61,7 @@ input {
   box-sizing: border-box;
   font-weight: 600;
   margin-bottom: 10px;
+  text-align: center;
 }
 
 input::placeholder {
@@ -130,7 +131,7 @@ a {
   top: 0;
   left: 0;
   margin-top: 60px;
-  width: 55%;
+  width: 15%;
   height: 41vh;
   border-bottom-right-radius: 15px;
   background-color: var(--cor-azul);
@@ -144,7 +145,6 @@ button {
   text-align: center;
   width: 110px;
   height: 30px;
-  padding: 6px 30px;
   background-color: rgba(44, 65, 129, 0.897);
   border-radius: 5px;
   color: white;
@@ -159,9 +159,9 @@ button:focus {
 }
 
 .footer {
-  width: 102%;
+  width: 101%;
   position: relative;
-  margin-top: 5%;
+  margin-top: 8%;
   margin-left: -8px;
   margin-bottom: -20px;
   background-color: var(--cor-azul);
@@ -379,9 +379,10 @@ button:focus {
 }
 
 #solucao {
-  margin-top: -270px;
+  margin-top: -250px;
   margin-left: 315px;
   letter-spacing: 0.1px;
+  height: 300px;
   color: white;
   span {
     font-family: var(--luthier-font);
@@ -399,6 +400,9 @@ button:focus {
     margin-top: 50px;
     margin-left: -200px;
     text-align: center;
+  }
+  #menu-options {
+    width: 60%;
   }
 }
 
@@ -422,6 +426,7 @@ button:focus {
     position: absolute;
     margin-left: -8px;
     margin-bottom: 0px;
+    height: 121%;
   }
 }
 
@@ -484,7 +489,7 @@ button:focus {
   direction: ltr;
   /* justify-content: center; */
   margin-left: 34%;
-  margin-top: -41%;
+  margin-top: -28%;
   width: 40%;
   li {
     list-style: none;

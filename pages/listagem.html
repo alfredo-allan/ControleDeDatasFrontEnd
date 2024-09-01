@@ -49,7 +49,12 @@
     <div id="form">
       <div class="column">
         <span>Nome o Promotor</span>
-        <input id="nome-promotor" placeholder="Digite Seu Nome" type="text" />
+        <input
+          id="nome-promotor"
+          placeholder="Digite Seu Nome"
+          type="text"
+          onblur="this.value = this.value.trim();"
+        />
 
         <span>Nome Do Cliente</span>
         <input
@@ -202,4 +207,15 @@
   <script src="../js/script.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/docxtemplater/3.12.0/docxgen.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/docxtemplater/3.12.0/docxgen.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const inputsToUppercase = document.querySelectorAll("#nome-promotor");
+
+      inputsToUppercase.forEach((input) => {
+        input.addEventListener("input", function () {
+          this.value = this.value.toUpperCase();
+        });
+      });
+    });
+  </script>
 </html>

@@ -32,6 +32,56 @@
       ]
     },
     {
+      "nome": "Assai (Taboão)",
+      "endereco": {
+        "rua": "Av. do Taboão, 574",
+        "bairro": "Taboão",
+        "cidade": "São Bernardo do Campo",
+        "estado": "SP"
+      },
+      "produtos": []
+    },
+    {
+      "nome": "Atacadão (Anchieta)",
+      "endereco": {
+        "rua": " Av. Marginal Direita Anchieta, km 11 ",
+        "bairro": "Jardim Maria Estela,",
+        "cidade": "São Paulo",
+        "estado": "SP"
+      },
+      "produtos": []
+    },
+    {
+      "nome": "Max Muffato",
+      "endereco": {
+        "rua": "Rua Frei Damião,",
+        "bairro": "Paulicéia",
+        "cidade": "São Bernardo do Campo",
+        "estado": "SP"
+      },
+      "produtos": []
+    },
+    {
+      "nome": "Carrefour (Anchieta)",
+      "endereco": {
+        "rua": " Rod. Anchieta, 3398",
+        "bairro": "Jardim Maria Estela",
+        "cidade": "São Paulo",
+        "estado": "SP"
+      },
+      "produtos": []
+    },
+    {
+      "nome": "Tenda Atacado (Diadema)",
+      "endereco": {
+        "rua": " Av. Fábio Eduardo Ramos Esquivel, 3000",
+        "bairro": "Canhema",
+        "cidade": "Diadema",
+        "estado": "SP"
+      },
+      "produtos": []
+    },
+    {
       "nome": "Nagumo (Armazem) Vila Diva",
       "endereco": {
         "rua": "Av Sapopemba 4431",
@@ -386,6 +436,10 @@
           "descricao": "IORG LÍQ FRUTAP SABOR COCO 850G"
         },
         {
+          "codigoEAN": "7896862000417",
+          "descricao": "IORG LÍQ FRUTAP SABOR COCO 170G"
+        },
+        {
           "codigoEAN": "7896862000684",
           "descricao": "IORG LÍQ FRUTAP SABOR SALADA DE FRUTAS 850G"
         },
@@ -448,6 +502,46 @@
         {
           "codigoEAN": "7896862002886",
           "descricao": "FRUTAP SOBREMESA FRUTAP PUDIM 100G LEITE CONDENSADO"
+        },
+        {
+          "codigoEAN": "7896862003036",
+          "descricao": "Leite Fermentado Frutap 450 G Bd C/6 Patati Patata"
+        },
+        {
+          "codigoEAN": "7896862002923",
+          "descricao": "Iogurte Integral Frutap Patati Patata Morango 360g"
+        },
+        {
+          "codigoEAN": "7896862003111",
+          "descricao": "Iogurte Frutap Dessert Maracuja 90g"
+        },
+        {
+          "codigoEAN": "7896862003197",
+          "descricao": "Iogurte Frutap Dessert Trufado 90g"
+        },
+        {
+          "codigoEAN": "7896862003104",
+          "descricao": "Iogurte Frutap Dessert Morango 90g"
+        },
+        {
+          "codigoEAN": "7896862003043",
+          "descricao": "Iogurte Frutap C/Pedacos Morango 90g"
+        },
+        {
+          "codigoEAN": "7896862002893",
+          "descricao": "Sobremesa Láctea Frutap Chocolate 720g"
+        },
+        {
+          "codigoEAN": "7896862001667",
+          "descricao": "SOBREMESA LAC. CHOC. AO LEITE BAND. FRUTAP 12X180G"
+        },
+        {
+          "codigoEAN": "07896862002336",
+          "descricao": "SOB. lACTEA FRUTAP CHOCOLATE BRANCO 180G"
+        },
+        {
+          "codigoEAN": "07896862002435",
+          "descricao": "SOB. lACTEA FRUTAP DOCE DE LEITE 180G"
         }
       ]
     }
