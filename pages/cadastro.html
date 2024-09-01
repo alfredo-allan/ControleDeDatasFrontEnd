@@ -11,6 +11,7 @@
       href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap"
       rel="stylesheet"
     />
+
     <title>Controle de Datas</title>
   </head>
   <body>
@@ -70,13 +71,8 @@
         />
 
         <span>EAN</span>
-        <input
-          type="text"
-          id="ean"
-          placeholder="Código De Barras"
-          onclick="abrirCamera();"
-        />
-        <video id="video" style="display: none"></video>
+        <input type="text" id="ean" placeholder="Código De Barras" />
+
         <span>Descrição</span>
         <input
           type="text"
@@ -102,7 +98,6 @@
     </div>
   </body>
   <!-- <script src="../js/script.js"></script> -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -342,69 +337,4 @@
       });
     });
   </script>
-  <script>
-    function abrirCamera() {
-      if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-        navigator.mediaDevices
-          .getUserMedia({ video: { facingMode: "environment" } })
-          .then(function (stream) {
-            let video = document.getElementById("video");
-            video.srcObject = stream;
-            video.setAttribute("playsinline", true); // necessário para o iOS
-            video.play();
-            video.style.display = "block"; // Mostrar vídeo para visualização da câmera
-
-            Quagga.init(
-              {
-                inputStream: {
-                  name: "Live",
-                  type: "LiveStream",
-                  target: video, // Elemento de vídeo
-                  constraints: {
-                    facingMode: "environment", // Usar câmera traseira
-                  },
-                  singleChannel: false, // Melhor desempenho para dispositivos mais lentos
-                },
-                decoder: {
-                  readers: ["ean_reader", "ean_8_reader", "code_128_reader"], // Suporte para múltiplos tipos de códigos
-                },
-                locator: {
-                  patchSize: "medium", // "x-small", "small", "medium", "large", "x-large"
-                  halfSample: true, // Melhorar performance
-                },
-                locate: true, // Detecta a localização do código de barras
-              },
-              function (err) {
-                if (err) {
-                  console.error("Erro ao inicializar Quagga: ", err);
-                  return;
-                }
-                console.log("Quagga inicializado com sucesso.");
-                Quagga.start(); // Inicia o scanner de código de barras
-              }
-            );
-
-            // Quando o código de barras é detectado
-            Quagga.onDetected(function (data) {
-              const codigo = data.codeResult.code;
-              console.log("Código detectado: ", codigo);
-
-              // Define o valor do campo de entrada
-              document.getElementById("ean").value = codigo;
-
-              // Para o scanner e o fluxo de vídeo
-              Quagga.stop();
-              stream.getTracks().forEach((track) => track.stop());
-              video.style.display = "none"; // Ocultar o vídeo após a leitura
-            });
-          })
-          .catch(function (err) {
-            console.error("Erro ao acessar a câmera: ", err);
-          });
-      } else {
-        alert("Desculpe, seu navegador não suporta o acesso à câmera.");
-      }
-    }
-  </script>
-  Ajustes e Verificações
 </html>
