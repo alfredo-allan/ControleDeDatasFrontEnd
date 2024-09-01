@@ -34,7 +34,12 @@
     <div id="form">
       <div class="column">
         <span>Nome Do Promotor</span>
-        <input id="nome-promotor" placeholder="Digite Seu Nome" type="text" />
+        <input
+          id="nome-promotor"
+          placeholder="Digite Seu Nome"
+          type="text"
+          onblur="this.value = this.value.trim();"
+        />
         <span>Nome Do Cliente</span>
         <input
           type="text"
@@ -146,4 +151,16 @@
       });
   </script>
   <script src="../js/script.js"></script>
+  <script>
+    //letras maisculas
+    document.addEventListener("DOMContentLoaded", function () {
+      const inputsToUppercase = document.querySelectorAll("#nome-promotor");
+
+      inputsToUppercase.forEach((input) => {
+        input.addEventListener("input", function () {
+          this.value = this.value.toUpperCase();
+        });
+      });
+    });
+  </script>
 </html>
