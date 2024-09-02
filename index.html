@@ -11,6 +11,18 @@
       href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap"
       rel="stylesheet"
     />
+    <style>
+      @media (min-width: 300px) {
+        button#modalOkButton {
+          margin-left: 190px;
+        }
+      }
+      @media (min-width: 1200px) {
+        button#modalOkButton {
+          margin-left: 1216px;
+        }
+      }
+    </style>
     <title>Controle de Datas</title>
   </head>
   <body>
@@ -30,23 +42,50 @@
       </div>
     </div>
     <div id="titulo">
-      <img src="./images/datacontrol.png" alt="">
+      <img src="./images/datacontrol.png" alt="" />
     </div>
-    <img id="instrucao" src="./images/CadastrarDatas.png" alt="">
+    <img id="instrucao" src="./images/CadastrarDatas.png" alt="" />
     <div class="coluna">
-    <ul id="texto-intrucao">
-      <span>Cadastrar Datas</span>
-      <li>Nesse registro é inserido nome do promotor, nome do supermercado com função de auto preenchimento de endereço, ao digitar o código EAN possui também auto preenchimento automatico da descrição para evitar erros de registro por fim você reporta a data de vecimento e quantidade</li>
-      <span>Listar datas</span>
-      <li>Com o preenchimeto de todos os campos se  obtem as informações cadastradas por todos os promotores</li>
-      <span>Atualizar cadastro</span>
-      <li>É realizada uma listagem conforme as informaçoes preenchidas e ao clicar no ícone <img id="atualizar" src="./images/repetir.png" alt=""> e redirecinado para o recadastramento dos dados</li>
-      <span>Busca Avançada</span>
-      <li>Ao digitar o codigo EAN é carregado a descrição automaticamente e é listado onde  esse item foi cadastrado e por quem</li>
-      <span>Deletar Dados</span>
-      <li>Na listagem  é so clicar no ícone <img id="deletar" src="./images/excluir.png" alt=""> eo registro sera excluido</li>
-    </ul>
+      <ul id="texto-intrucao">
+        <span>Cadastrar Datas</span>
+        <li>
+          Nesse registro é inserido nome do promotor, nome do supermercado com
+          função de auto preenchimento de endereço, ao digitar o código EAN
+          possui também auto preenchimento automatico da descrição para evitar
+          erros de registro por fim você reporta a data de vecimento e
+          quantidade
+        </li>
+        <span>Listar datas</span>
+        <li>
+          Com o preenchimeto de todos os campos se obtem as informações
+          cadastradas por todos os promotores
+        </li>
+        <span>Atualizar cadastro</span>
+        <li>
+          É realizada uma listagem conforme as informaçoes preenchidas e ao
+          clicar no ícone
+          <img id="atualizar" src="./images/repetir.png" alt="" /> e
+          redirecinado para o recadastramento dos dados
+        </li>
+        <span>Busca Avançada</span>
+        <li>
+          Ao digitar o codigo EAN é carregado a descrição automaticamente e é
+          listado onde esse item foi cadastrado e por quem
+        </li>
+        <span>Deletar Dados</span>
+        <li>
+          Na listagem é so clicar no ícone
+          <img id="deletar" src="./images/excluir.png" alt="" /> eo registro
+          sera excluido
+        </li>
+      </ul>
     </div>
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Você precisa conferir algumas datas!</p>
+        <button id="modalOkButton">OK</button>
+      </div>
     </div>
     <div class="footer">
       <div id="mapa" class="col-sm-6">
@@ -67,8 +106,8 @@
           sugestão <br />
           é criada ao começar a digitar o nome do cliente com o objetivo de
           preencher <br />
-          o endereço e carregar informações necessarias do seu cliente automaticamente, ao
-          digitar o código <br />
+          o endereço e carregar informações necessarias do seu cliente
+          automaticamente, ao digitar o código <br />
           EAN é carregado a descrição do item que você deseja cadastrar,
           gerenciamento <br />
           de datas com recurso de atulização,deleção e criação de cadastro. o
@@ -81,4 +120,73 @@
     </div>
   </body>
   <script src="./js/script.js"></script>
+  <script>
+    function toggleModal() {
+      var modal = document.getElementById("myModal");
+      modal.style.display = "block";
+
+      var closeButton = document.querySelector(".close");
+      var okButton = document.getElementById("modalOkButton");
+
+      closeButton.onclick = function () {
+        modal.style.display = "none";
+      };
+
+      okButton.onclick = function () {
+        window.location.href = "pages/datascomprometidas.html";
+      };
+
+      window.onclick = function (event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      };
+    }
+
+    function daysBetween(date1, date2) {
+      const oneDay = 24 * 60 * 60 * 1000; // Milissegundos em um dia
+      return Math.round((date2 - date1) / oneDay);
+    }
+
+    async function checkDates() {
+      try {
+        const response = await fetch(
+          "https://v1controledatas.pythonanywhere.com/dados"
+        );
+        const data = await response.json();
+        console.log("Dados recebidos:", data); // Log para verificar os dados recebidos
+
+        const today = new Date(); // Data atual
+        console.log("Data atual:", today); // Log da data atual
+
+        let shouldShowModal = false;
+
+        data.forEach((item) => {
+          // Formatar data de vencimento corretamente
+          const vencimentoParts = item.dataVencimento.split("/");
+          const vencimento = new Date(
+            `20${vencimentoParts[2]}-${vencimentoParts[1]}-${vencimentoParts[0]}`
+          );
+          console.log("Data de vencimento:", vencimento); // Log da data de vencimento
+
+          const daysLeft = daysBetween(today, vencimento);
+          console.log("Dias restantes:", daysLeft); // Log dos dias restantes
+
+          if (daysLeft <= 10 && daysLeft >= 0) {
+            shouldShowModal = true;
+          }
+        });
+
+        if (shouldShowModal) {
+          console.log("Exibindo o modal"); // Log quando o modal deve ser exibido
+          toggleModal();
+        }
+      } catch (error) {
+        console.error("Erro ao buscar dados:", error);
+      }
+    }
+
+    // Chama a função ao carregar a página
+    document.addEventListener("DOMContentLoaded", checkDates);
+  </script>
 </html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="../favicon.ico" />
+    <link rel="stylesheet" href="../style/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      @media (min-width: 1200px) {
+        #alg-inp {
+          width: 40%;
+          margin: 24px 363px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+        #data-list {
+          width: 600px;
+          margin-top: -200px;
+          scrollbar-color: var(--cor-branca) var(--cor-azul);
+          p {
+            color: rgb(56, 56, 56);
+          }
+          strong {
+            color: var(--cor-azul);
+          }
+        }
+
+        strong {
+          font-size: 20px;
+        }
+      }
+      @media (min-width: 300px) {
+        #data-list {
+          margin-top: -2px;
+        }
+        p {
+          color: rgb(56, 56, 56);
+        }
+        strong {
+          color: var(--cor-azul);
+        }
+      }
+    </style>
+    <title>Controle de Datas</title>
+  </head>
+  <body>
+    <div class="header">
+      <div id="menu-icon">
+        <img id="icon-menu" src="../images/barra-de-menu.png" alt="" />
+      </div>
+      <div id="titulo">
+        <!-- <h1>Controle De Datas</h1> -->
+      </div>
+      <div id="menu-options">
+        <ul>
+          <!-- <img id="usuario" src="./images/usuario-exemplo.jpg" alt="" /> -->
+          <a href="../index.html"><li>Pagina Inicial</li></a>
+          <a href="cadastro.html"><li>Cadastar Datas</li></a>
+          <a href="listagem.html"><li>Listagem</li></a>
+          <a href="atualizar.html"><li>Atualizar Cadastro</li></a>
+          <a href="buscaavancada.html"><li>Busca Avançada</li></a>
+        </ul>
+      </div>
+    </div>
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Dados excluidos com sucesso!</p>
+      </div>
+    </div>
+    <div id="modal-confirm" class="modal">
+      <div class="modal-content">
+        <p>Deseja realmente excluir estes dados?</p>
+        <div id="modalbtn">
+          <button id="confirmButton">Sim</button>
+          <button id="cancelButton">Cancelar</button>
+        </div>
+      </div>
+    </div>
+    <h1 style="color: rgb(56, 56, 56)">Próximas ao Vencimento</h1>
+    <div id="data-list"></div>
+    <div class="footer_pg">
+      <img src="../images/data.png" alt="" />
+    </div>
+    <div id="alg-inp">
+      <span for="nome-promotor">Nome Do Promotor:</span>
+      <input
+        type="text"
+        id="nome-promotor"
+        placeholder="Digite Seu Nome"
+        onblur="this.value = this.value.trim();"
+      />
+    </div>
+
+    <div id="data-list"></div>
+    <div class="footer_pg">
+      <img src="../images/data.png" alt="" />
+    </div>
+  </body>
+  <script>
+    function daysBetween(date1, date2) {
+      const oneDay = 24 * 60 * 60 * 1000; // Milissegundos em um dia
+      const firstDate = new Date(date1);
+      const secondDate = new Date(date2);
+
+      return Math.round((secondDate - firstDate) / oneDay);
+    }
+
+    async function loadDates() {
+      try {
+        const response = await fetch(
+          "https://v1controledatas.pythonanywhere.com/dados"
+        );
+        const data = await response.json();
+        const today = new Date(); // Data atual
+
+        const dataList = document.getElementById("data-list");
+        dataList.innerHTML = "";
+
+        data.forEach((item) => {
+          const vencimento = new Date(
+            item.dataVencimento.split("/").reverse().join("-")
+          );
+          const daysLeft = daysBetween(today, vencimento);
+
+          if (daysLeft <= 10) {
+            const listItem = document.createElement("div");
+            listItem.innerHTML = `
+                        <p><strong>Nome do Promotor:</strong> ${item.nomePromotor}</p>
+                        <p><strong>Número do Registro:</strong> ${item.id}</p>
+                        <p><strong>Nome do Cliente:</strong> ${item.nomeCliente}</p>
+                        <p><strong>Endereço do Cliente:</strong> ${item.enderecoCliente}</p>
+                        <p><strong>EAN:</strong> ${item.ean}</p>
+                        <p><strong>Descrição do Produto:</strong> ${item.descricaoProduto}</p>
+                        <p><strong>Data de Vencimento:</strong> ${item.dataVencimento}</p>
+                        <p><strong>Quantidade de Produtos:</strong> ${item.quantidadeProdutos}</p>
+                        <hr>
+                    `;
+            dataList.appendChild(listItem);
+          }
+        });
+      } catch (error) {
+        console.error("Erro ao buscar dados:", error);
+      }
+    }
+
+    // Chama a função ao carregar a página
+    document.addEventListener("DOMContentLoaded", loadDates);
+  </script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script> -->
+  <script src="../js/script.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/docxtemplater/3.12.0/docxgen.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/docxtemplater/3.12.0/docxgen.js"></script>
+  <script>
+    function daysBetween(date1, date2) {
+      const oneDay = 24 * 60 * 60 * 1000; // Milissegundos em um dia
+      const firstDate = new Date(date1);
+      const secondDate = new Date(date2);
+      return Math.round((secondDate - firstDate) / oneDay);
+    }
+
+    async function loadDates(filterName = "") {
+      try {
+        const response = await fetch(
+          "https://v1controledatas.pythonanywhere.com/dados"
+        );
+        const data = await response.json();
+        const today = new Date(); // Data atual
+        const dataList = document.getElementById("data-list");
+        dataList.innerHTML = "";
+
+        data.forEach((item) => {
+          const vencimentoParts = item.dataVencimento.split("/");
+          const vencimento = new Date(
+            `20${vencimentoParts[2]}-${vencimentoParts[1]}-${vencimentoParts[0]}`
+          );
+          const daysLeft = daysBetween(today, vencimento);
+
+          if (daysLeft <= 10 && daysLeft >= 0) {
+            // Filtrar por nome do promotor
+            if (
+              filterName === "" ||
+              item.nomePromotor.toLowerCase().includes(filterName.toLowerCase())
+            ) {
+              const listItem = document.createElement("div");
+              listItem.innerHTML = `
+                <p><strong>Nome do Promotor:</strong> ${item.nomePromotor}</p>
+                <p><strong>Número do Registro:</strong> ${item.id}</p>
+                <p><strong>Nome do Cliente:</strong> ${item.nomeCliente}</p>
+                <p><strong>Endereço do Cliente:</strong> ${item.enderecoCliente}</p>
+                <p><strong>EAN:</strong> ${item.ean}</p>
+                <p><strong>Descrição do Produto:</strong> ${item.descricaoProduto}</p>
+                <p><strong>Data de Vencimento:</strong> ${item.dataVencimento}</p>
+                <p><strong>Quantidade de Produtos:</strong> ${item.quantidadeProdutos}</p>
+                <hr>
+              `;
+              dataList.appendChild(listItem);
+            }
+          }
+        });
+      } catch (error) {
+        console.error("Erro ao buscar dados:", error);
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      loadDates(); // Carregar dados inicialmente
+
+      const searchInput = document.getElementById("nome-promotor");
+      searchInput.addEventListener("input", (event) => {
+        const filterName = event.target.value;
+        loadDates(filterName); // Recarregar dados com o filtro aplicado
+      });
+    });
+  </script>
+  <script>
+    //letras maisculas
+    document.addEventListener("DOMContentLoaded", function () {
+      const inputsToUppercase = document.querySelectorAll("#nome-promotor");
+
+      inputsToUppercase.forEach((input) => {
+        input.addEventListener("input", function () {
+          this.value = this.value.toUpperCase();
+        });
+      });
+    });
+  </script>
+</html>
