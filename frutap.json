@@ -39,7 +39,12 @@
         "cidade": "São Bernardo do Campo",
         "estado": "SP"
       },
-      "produtos": []
+      "produtos": [
+        {
+          "codigoEAN": "7896862000875",
+          "descricao": "IORGUTE FRUTAP MORANGO 850G"
+        }
+      ]
     },
     {
       "nome": "Atacadão (Anchieta)",
@@ -54,7 +59,7 @@
     {
       "nome": "Max Muffato",
       "endereco": {
-        "rua": "Rua Frei Damião,",
+        "rua": "Rua Frei Damião",
         "bairro": "Paulicéia",
         "cidade": "São Bernardo do Campo",
         "estado": "SP"
