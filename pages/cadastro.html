@@ -11,6 +11,18 @@
       href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap"
       rel="stylesheet"
     />
+    <style>
+      #reader {
+        width: 20px;
+        margin-top: 20px;
+        margin-left: -738px;
+      }
+
+      #close-btn {
+        position: absolute;
+        margin: -9px 222p;
+      }
+    </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
 
     <title>Controle de Datas</title>
@@ -78,8 +90,10 @@
           placeholder="Código De Barras"
           onclick="iniciarLeitura()"
         />
-        <button id="start-scan">Iniciar Câmera</button>
-        <div id="reader" style="width: 300px; margin-top: 20px"></div>
+        <div id="reader">
+          <button id="close-btn" onclick="fecharCamera()">Fechar</button>
+        </div>
+
         <span>Descrição</span>
         <input
           type="text"
@@ -433,7 +447,11 @@
         }
       });
     }
-
+    function fecharCamera() {
+      const reader = document.getElementById("reader");
+      reader.style.display = "none"; // Esconde a câmera
+      document.getElementById("close-btn").style.display = "none"; // Esconde o botão "Fechar"
+    }
     function validateEAN(code) {
       if (code.length !== 13) return false;
 
