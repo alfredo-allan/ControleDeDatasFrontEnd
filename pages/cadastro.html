@@ -11,6 +11,7 @@
       href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap"
       rel="stylesheet"
     />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
 
     <title>Controle de Datas</title>
   </head>
@@ -71,8 +72,14 @@
         />
 
         <span>EAN</span>
-        <input type="text" id="ean" placeholder="Código De Barras" />
-
+        <input
+          type="text"
+          id="ean"
+          placeholder="Código De Barras"
+          onclick="iniciarLeitura()"
+        />
+        <button id="start-scan">Iniciar Câmera</button>
+        <div id="reader" style="width: 300px; margin-top: 20px"></div>
         <span>Descrição</span>
         <input
           type="text"
@@ -336,5 +343,112 @@
         });
       });
     });
+  </script>
+  <script>
+    function iniciarLeitura() {
+      Quagga.init(
+        {
+          inputStream: {
+            name: "Live",
+            type: "LiveStream",
+            target: document.querySelector("#reader"),
+            constraints: {
+              facingMode: "environment",
+            },
+            willReadFrequently: true, // Otimização
+          },
+          decoder: {
+            readers: ["ean_reader"], // Configura o leitor para EAN
+          },
+          locate: true, // Ativa a localização da leitura
+          locator: {
+            halfSample: false,
+            patchSize: "medium",
+          },
+          numOfWorkers: 2, // Reduz o número de workers para melhorar a performance
+          frequency: 10, // Frequência da análise dos frames
+        },
+        function (err) {
+          if (err) {
+            console.error("Erro ao iniciar o QuaggaJS:", err);
+            return;
+          }
+          console.log("QuaggaJS iniciado corretamente");
+          Quagga.start();
+        }
+      );
+
+      Quagga.onProcessed(function (result) {
+        const drawingCtx = Quagga.canvas.ctx.overlay;
+        const drawingCanvas = Quagga.canvas.dom.overlay;
+
+        if (result) {
+          if (result.boxes) {
+            drawingCtx.clearRect(
+              0,
+              0,
+              drawingCanvas.width,
+              drawingCanvas.height
+            );
+            result.boxes
+              .filter(function (box) {
+                return box !== result.box;
+              })
+              .forEach(function (box) {
+                Quagga.ImageDebug.drawPath(box, { x: 0, y: 1 }, drawingCtx, {
+                  color: "green",
+                  lineWidth: 2,
+                });
+              });
+          }
+
+          if (result.box) {
+            Quagga.ImageDebug.drawPath(result.box, { x: 0, y: 1 }, drawingCtx, {
+              color: "#00F",
+              lineWidth: 2,
+            });
+          }
+
+          if (result.codeResult && result.codeResult.code) {
+            Quagga.ImageDebug.drawPath(
+              result.line,
+              { x: "x", y: "y" },
+              drawingCtx,
+              { color: "red", lineWidth: 3 }
+            );
+          }
+        }
+      });
+
+      Quagga.onDetected(function (result) {
+        const code = result.codeResult.code;
+        console.log("Código detectado:", code);
+
+        if (code && code.length === 13 && validateEAN(code)) {
+          // Verifica se o código é EAN-13 e válido
+          document.getElementById("ean").value = code;
+          Quagga.stop(); // Para a leitura após capturar o código corretamente
+        } else {
+          console.warn("Código incorreto ou inválido:", code);
+        }
+      });
+    }
+
+    function validateEAN(code) {
+      if (code.length !== 13) return false;
+
+      let sum = 0;
+      for (let i = 0; i < 12; i++) {
+        const digit = parseInt(code[i], 10);
+        sum += i % 2 === 0 ? digit : digit * 3;
+      }
+
+      const checkDigit = (10 - (sum % 10)) % 10;
+      return checkDigit === parseInt(code[12], 10);
+    }
+
+    document
+      .getElementById("start-scan")
+      .addEventListener("click", iniciarLeitura);
   </script>
 </html>
