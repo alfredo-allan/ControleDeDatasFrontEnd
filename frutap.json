@@ -50,7 +50,7 @@
       "nome": "Atacadão (Anchieta)",
       "endereco": {
         "rua": " Av. Marginal Direita Anchieta, km 11 ",
-        "bairro": "Jardim Maria Estela,",
+        "bairro": "Jardim Maria Estela",
         "cidade": "São Paulo",
         "estado": "SP"
       },
@@ -442,7 +442,7 @@
         },
         {
           "codigoEAN": "7896862000417",
-          "descricao": "IORG LÍQ FRUTAP SABOR COCO 170G"
+          "descricao": "IORG LÍQ FRUTAP SABOR COCO 160G"
         },
         {
           "codigoEAN": "7896862000684",
@@ -547,6 +547,22 @@
         {
           "codigoEAN": "07896862002435",
           "descricao": "SOB. lACTEA FRUTAP DOCE DE LEITE 180G"
+        },
+        {
+          "codigoEAN": "7896862003012",
+          "descricao": "Sobremesa Láctea Frutapinho Chocolate 320g"
+        },
+        {
+          "codigoEAN": "789686200844",
+          "descricao": "IOGURTE FRUTAP FRUTAS VERMELHA 160G"
+        },
+        {
+          "codigoEAN": "7896862002329",
+          "descricao": "Iogurte grego Frutap 100g frutas vermelhas"
+        },
+        {
+          "codigoEAN": "7896862001889",
+          "descricao": "Iogurte grego Frutap morango 100g"
         }
       ]
     }
