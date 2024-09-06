@@ -11,16 +11,128 @@
       href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+    />
+
     <style>
-      #reader {
-        width: 20px;
-        margin-top: 20px;
-        margin-left: -738px;
+      #close-btn {
+        width: 15px;
+        height: 15px;
+        position: absolute;
+        margin: 218px;
+        margin-left: -96px;
+        font-size: 9px;
+        text-align: center;
+        border-radius: 50%;
+      }
+      video {
+        width: 330px;
+        height: 245px;
+        margin: 0px 154px;
+      }
+      .drawingBuffer {
+        position: absolute;
+        margin: 0px -690px;
       }
 
-      #close-btn {
-        position: absolute;
-        margin: -9px 222p;
+      html,
+      body {
+        height: 100%; /* Garante que a altura seja 100% da viewport */
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        overflow-x: hidden; /* Impede o scroll horizontal */
+      }
+
+      .column {
+        flex: 1; /* Faz com que o conteúdo principal ocupe o espaço disponível */
+        padding: 20px; /* Padding opcional para o conteúdo */
+        margin-bottom: 30px;
+      }
+
+      .footer_cds {
+        background-color: rgb(44, 65, 129);
+        width: 100%; /* O footer ocupará 100% da largura da página */
+        position: relative; /* Permite que o footer se posicione dinamicamente */
+        text-align: center;
+        color: white; /* Cor do texto */
+        margin-top: auto; /* Faz com que o footer fique no fim da página */
+      }
+      /* Estilos básicos para o Flatpickr */
+      .flatpickr-calendar {
+        background-color: #f0f0f0; /* Cor de fundo */
+        border-radius: 10px; /* Bordas arredondadas */
+        border: 1px solid #ccc; /* Borda fina */
+        padding: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+      }
+
+      .flatpickr-months {
+        background-color: #2c4181; /* Fundo azul para a barra de meses */
+        color: #fff; /* Cor do texto em branco */
+        border-radius: 8px 8px 0 0;
+      }
+
+      .flatpickr-weekday {
+        color: #333; /* Cor dos dias da semana */
+        font-weight: bold;
+      }
+
+      .flatpickr-day {
+        padding: 10px;
+        font-size: 14px;
+        border-radius: 50%;
+        transition: background-color 0.3s ease;
+      }
+
+      .flatpickr-day:hover {
+        background-color: #2c4181; /* Cor de fundo ao passar o mouse */
+        color: #fff;
+      }
+
+      .flatpickr-day.today {
+        background-color: #f05a28; /* Cor diferente para o dia atual */
+        color: #fff;
+      }
+
+      /* Personalizações adicionais das setas */
+      .flatpickr-prev-month svg,
+      .flatpickr-next-month svg {
+        fill: #fff; /* Cor das setas de navegação */
+      }
+      .flatpickr-current-month {
+        color: #fff;
+      }
+      /* Estilos específicos para telas menores (celulares) */
+      @media (max-width: 600px) {
+        .flatpickr-calendar {
+          width: 100vw; /* Faz o calendário ocupar toda a largura da tela */
+          border-radius: 0; /* Remove as bordas arredondadas para uma aparência mais fluida em celulares */
+          padding: 5px; /* Reduz o padding em dispositivos móveis */
+        }
+
+        .flatpickr-day {
+          padding: 8px; /* Diminui o espaço dos dias no calendário */
+          font-size: 12px; /* Reduz o tamanho da fonte */
+        }
+
+        .flatpickr-months {
+          font-size: 14px; /* Ajusta o tamanho da fonte do mês */
+        }
+
+        .flatpickr-weekday {
+          font-size: 10px; /* Ajusta o tamanho das legendas dos dias da semana */
+        }
+      }
+
+      /* Força os botões de navegação a serem grandes o suficiente em dispositivos móveis */
+      .flatpickr-prev-month svg,
+      .flatpickr-next-month svg {
+        width: 24px;
+        height: 24px;
       }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
@@ -87,13 +199,12 @@
         <input
           type="text"
           id="ean"
+          autocomplete="off"
           placeholder="Código De Barras"
           onclick="iniciarLeitura()"
         />
-        <div id="reader">
-          <button id="close-btn" onclick="fecharCamera()">Fechar</button>
-        </div>
-
+        <div id="reader"></div>
+        <button id="close-btn" onclick="fecharCamera()">x</button>
         <span>Descrição</span>
         <input
           type="text"
@@ -105,6 +216,7 @@
         <input
           type="text"
           id="data-vencimento"
+          id="userDateField"
           placeholder="Data De Vencimento"
         />
 
@@ -114,11 +226,12 @@
         <button id="btn-salvar">Salvar</button>
       </div>
     </div>
-    <div class="footer_pg">
-      <img src="../images/data.png" alt="" />
+    <div class="footer_cds">
+      <img src="../images/data.png" id="cds-img" alt="" />
     </div>
   </body>
   <!-- <script src="../js/script.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -368,6 +481,8 @@
             target: document.querySelector("#reader"),
             constraints: {
               facingMode: "environment",
+              width: 200, // Defina uma resolução maior
+              height: 1000,
             },
             willReadFrequently: true, // Otimização
           },
@@ -377,10 +492,11 @@
           locate: true, // Ativa a localização da leitura
           locator: {
             halfSample: false,
-            patchSize: "medium",
+            patchSize: "large",
+            halfSample: false,
           },
           numOfWorkers: 2, // Reduz o número de workers para melhorar a performance
-          frequency: 10, // Frequência da análise dos frames
+          frequency: 40, // Frequência da análise dos frames
         },
         function (err) {
           if (err) {
@@ -468,5 +584,56 @@
     document
       .getElementById("start-scan")
       .addEventListener("click", iniciarLeitura);
+  </script>
+  <script>
+    flatpickr("#data-vencimento", {
+      dateFormat: "d/m/Y",
+      locale: {
+        firstDayOfWeek: 0,
+        weekdays: {
+          shorthand: ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"],
+          longhand: [
+            "Domingo",
+            "Segunda-feira",
+            "Terça-feira",
+            "Quarta-feira",
+            "Quinta-feira",
+            "Sexta-feira",
+            "Sábado",
+          ],
+        },
+        months: {
+          shorthand: [
+            "Jan",
+            "Fev",
+            "Mar",
+            "Abr",
+            "Mai",
+            "Jun",
+            "Jul",
+            "Ago",
+            "Set",
+            "Out",
+            "Nov",
+            "Dez",
+          ],
+          longhand: [
+            "Janeiro",
+            "Fevereiro",
+            "Março",
+            "Abril",
+            "Maio",
+            "Junho",
+            "Julho",
+            "Agosto",
+            "Setembro",
+            "Outubro",
+            "Novembro",
+            "Dezembro",
+          ],
+        },
+      },
+      disableMobile: true, // Força o uso da versão de desktop do calendário em celulares
+    });
   </script>
 </html>
