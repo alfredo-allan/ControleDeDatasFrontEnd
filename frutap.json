@@ -563,6 +563,26 @@
         {
           "codigoEAN": "7896862001889",
           "descricao": "Iogurte grego Frutap morango 100g"
+        },
+        {
+          "codigoEAN": "7896862001018",
+          "descricao": "Iogurte Liquido Frutap 850G Tradicional Batido"
+        },
+        {
+          "codigoEAN": "7896862003005",
+          "descricao": "Iogurte Liquido Frutap 850G UVA"
+        },
+        {
+          "codigoEAN": "7896862002916",
+          "descricao": "Iogurte Liquido Frutap 850G Açai C/ Morango"
+        },
+        {
+          "codigoEAN": "7896862000806",
+          "descricao": "Iogurte Líquido Frutap Sabor Morango 160G"
+        },
+        {
+          "codigoEAN": "7896862001292",
+          "descricao": "Iogurte Frutap Morango Bandeja 480g"
         }
       ]
     }
