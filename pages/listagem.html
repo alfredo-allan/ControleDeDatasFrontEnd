@@ -169,6 +169,7 @@
         const enderecoCliente =
           document.getElementById("endereco-cliente").value;
         const nomePromotor = document.getElementById("nome-promotor").value;
+
         fetch("https://v1controledatas.pythonanywhere.com/dados")
           .then((response) => response.json())
           .then((data) => {
@@ -178,20 +179,27 @@
                   item.nomeCliente === nomeCliente &&
                   item.enderecoCliente === enderecoCliente
                 ) {
+                  // Função para quebrar o texto se for muito longo
+                  const quebraLinha = (texto, largura) =>
+                    texto.match(new RegExp(`.{1,${largura}}`, "g")).join("\n");
+
+                  // Remover o espaçamento extra e alinhar os dois pontos
+                  const linha = (titulo, valor, largura = 50) =>
+                    `${titulo} : ${quebraLinha(valor, largura)}`;
+
                   return `
-                            Nome do Promotor: ${item.nomePromotor}
-                            Número do Registro: ${item.id}
-                            Nome do Cliente: ${item.nomeCliente}
-                            End: ${item.enderecoCliente}
-                            EAN: ${item.ean}
-                            Descrição: ${item.descricaoProduto}
-                            Data de Vencimento: ${item.dataVencimento}
-                            Quantidade de Produtos: ${item.quantidadeProdutos}
-                            -----------------------------
-                        `;
+${linha("Promotor", item.nomePromotor)}
+${linha("Cliente", item.nomeCliente)}
+${linha("Endereço", item.enderecoCliente)}
+${linha("EAN", item.ean)}
+${linha("Descrição", item.descricaoProduto)}
+${linha("Data Vencimento", item.dataVencimento)}
+${linha("Qtd. Produtos", item.quantidadeProdutos)}
+-----------------------------`;
                 }
               })
-              .join("");
+              .filter(Boolean) // Remove qualquer `undefined` do map
+              .join("\n");
 
             const blob = new Blob([content], { type: "text/plain" });
             const url = URL.createObjectURL(blob);
