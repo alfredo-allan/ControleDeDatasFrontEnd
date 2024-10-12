@@ -320,11 +320,11 @@
       ]
     },
     {
-      "nome": "Nagumo Madalena",
+      "nome": "Atacadão - São Caetano do Sul",
       "endereco": {
-        "rua": "Av Manuel Pimentel 300A",
-        "bairro": "Parque Santa Madalena",
-        "cidade": "São Paulo",
+        "rua": "Av. Guido Aliberti, 1285 09581-030",
+        "bairro": "Santo Antônio,",
+        "cidade": "São Caetano do Sul",
         "estado": "SP"
       },
       "produtos": [
@@ -585,15 +585,6 @@
           "descricao": "Iogurte Frutap Morango Bandeja 480g"
         }
       ]
-    },
-    {
-      "nome": "Atacadão - São Caetano do Sul",
-      "endereco": {
-        "rua": "Av. Guido Aliberti, 1285 09581-030",
-        "bairro": "Santo Antônio,",
-        "cidade": "São Caetano do Sul",
-        "estado": "SP"
-      }
     }
   ]
 }
