@@ -585,6 +585,15 @@
           "descricao": "Iogurte Frutap Morango Bandeja 480g"
         }
       ]
+    },
+    {
+      "nome": "Atacadão - São Caetano do Sul",
+      "endereco": {
+        "rua": "Av. Guido Aliberti, 1285 09581-030",
+        "bairro": "Santo Antônio,",
+        "cidade": "São Caetano do Sul",
+        "estado": "SP"
+      }
     }
   ]
 }
